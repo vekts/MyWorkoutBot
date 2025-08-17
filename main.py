@@ -1,7 +1,10 @@
 import telebot
 from telebot import types
+from dotenv import load_dotenv
+import os
 
-bot = telebot.TeleBot('8172684238:AAFDVtfItMnPyuvEAdanSLP1jbvW0ydMKEU')
+load_dotenv()
+bot = telebot.TeleBot(os.getenv('TOKEN'))
 
 
 @bot.message_handler(commands=['start'])
@@ -53,7 +56,35 @@ def callback(call):
         bot.send_message(call.message.chat.id, 'Добро пожаловать к твоему личному <b><em>фитнес-помощнику</em></b>!💪\n\nЭтот бот поможет быстро найти технику нужного тебе упражнения🏋\nTак что тебе больше не придётся тратить время на поиск видео🕓', parse_mode='HTML')
         bot.send_message(call.message.chat.id, 'Выберите группу мышц, чтобы получить варианты упражнений на неё, или введите название интересующего вас упражнения👇', reply_markup=markup)
     elif call.data == 'abs':
-        bot.send_message(call.message.chat.id, 'ABS here')
+        with open('abs.mp4', 'rb') as abs_file:
+            bot.send_video(call.message.chat.id, abs_file)
+    elif call.data == 'glutes':
+        with open('glutes.mp4', 'rb') as glutes_file:
+            bot.send_video(call.message.chat.id, glutes_file)
+    elif call.data == 'back':
+        with open('back.mp4', 'rb') as back_file:
+            bot.send_video(call.message.chat.id, back_file)
+    elif call.data == 'chest':
+        with open('chest.mp4', 'rb') as chest_file:
+            bot.send_video(call.message.chat.id, chest_file)
+    elif call.data == 'biceps':
+        with open('biceps.mp4', 'rb') as biceps_file:
+            bot.send_video(call.message.chat.id, biceps_file)
+    elif call.data == 'triceps':
+        with open('triceps.mp4', 'rb') as triceps_file:
+            bot.send_video(call.message.chat.id, triceps_file)
+    elif call.data == 'deltoids':
+        with open('deltoids.mp4', 'rb') as deltoids_file:
+            bot.send_video(call.message.chat.id, deltoids_file)
+    elif call.data == 'forearms':
+        with open('forearms.mp4', 'rb') as forearms_file:
+            bot.send_video(call.message.chat.id, forearms_file)
+    elif call.data == 'quadriceps':
+        with open('quadriceps.mp4', 'rb') as quadriceps_file:
+            bot.send_video(call.message.chat.id, quadriceps_file)
+    elif call.data == 'hamstrings':
+        with open('hamstrings.mp4', 'rb') as hamstrings_file:
+            bot.send_video(call.message.chat.id, hamstrings_file)
 
 
 bot.polling(non_stop=True)
